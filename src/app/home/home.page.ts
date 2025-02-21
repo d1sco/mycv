@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UtilsService } from '../utils.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  repos: Observable<any[]> = this.utils.githubRepos();
+  
+  constructor(
+    private utils: UtilsService
+  ) {
+    
+  }
 
 }

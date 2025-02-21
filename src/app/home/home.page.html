@@ -1,20 +1,118 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>
+        Steve Ford | Software Developer
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="5" size-xl="3">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                Hi, my name is Steve.
+              </ion-card-title>
+              <ion-card-subtitle>
+                I am a software developer.
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-img
+              [src]="'https://firebasestorage.googleapis.com/v0/b/steve-sites.appspot.com/o/me%2Ffull_body.jpg?alt=media&token=2773398e-3a9a-41aa-938e-b6f4995bb58f'">
+            </ion-img>
+            <ion-list>
+              <ion-item lines="none">
+                <ion-label>
+                    Nothing travels faster than the speed of light with the possible exception of bad news, which obeys
+                    its own special laws.
+                    <p>
+                      Douglas Adams, The Hitchhiker's Guide to the Galaxy
+                    </p>
+                </ion-label>
+                <!-- <ion-note slot="end">
+                  Douglas Adams, The Hitchhiker's Guide to the Galaxy
+                </ion-note> -->
+              </ion-item>
+            </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col  size="12" size-md="6" size-lg="4" size-xl="3">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                Stuff about code
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-list-header>
+                  <ion-label>
+                    <h2>Public repos</h2>
+                  </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let repo of (repos | async)" type="button" detail="true" href="{{repo?.html_url}}"
+                target="blank">
+                <ion-label class="ion-text-wrap">
+                  <p>{{repo?.name}}</p>
+                  <ion-text>
+                    {{repo?.description}}
+                  </ion-text>
+                </ion-label>
+              </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col  size="12" size-md="6" size-lg="4" size-xl="4">         
+           <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                Skills
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item>
+                  <ion-label>
+                    <h2>Programming Languages</h2>
+                    <p> JavaScript, TypeScript, Python, Go</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2>Frameworks and Libraries</h2>
+                    <p> Node, Angular, Express, GraphQL, RxJs, Jest, GraphQL</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2>Cloud</h2>
+                    <p>AWS(Textract, SageMaker, EC2, lambda, SQS), GCP/Firebase (Cloud Run, Compute), Azure</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2>Tools</h2>
+                    <p> Git, Docker, Kubernetes, Jenkins, GitHub Actions</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2>Other</h2>
+                    <p>EDI Standards (277, 835, 837), ElasticSearch, Stripe, Jira, Confluence</p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
 </ion-content>
