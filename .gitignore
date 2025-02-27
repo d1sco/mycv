@@ -77,5 +77,6 @@ Thumbs.db
 .github/
 
 # Environments
+src/environments
 src/environments/environment.prod.ts
 src/environments/environment.ts
