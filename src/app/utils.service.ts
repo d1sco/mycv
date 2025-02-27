@@ -15,4 +15,5 @@ export class UtilsService {
   githubRepos(): Observable<any> {
     return this.http.get('https://api.github.com/users/d1sco/repos');
   }
+
 }
