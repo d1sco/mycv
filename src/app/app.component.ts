@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UtilsService } from './utils.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   standalone: false,
 })
+
 export class AppComponent {
-  constructor() {}
+
+  isAuthenticated: boolean = false;
+
+  constructor(
+    private utils: UtilsService
+  ) {
+    this.utils.isUserLoggedIn.subscribe((isUserLoggedIn) => {
+      this.isAuthenticated = isUserLoggedIn;
+    }
+    )
+  }
 }
