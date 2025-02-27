@@ -12,16 +12,13 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  username: string = '';
-  password: string = '';
-
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.email),
     password: new FormControl('', Validators.required)
   });
 
   constructor(
-    private utilService: UtilsService,
+    private utils: UtilsService,
     private toastController: ToastController,
     private menuController: MenuController,
     private router: Router
@@ -33,31 +30,22 @@ export class LoginPage implements OnInit {
   onSubmit(){
     if(this.loginForm.valid){
       console.log("Form is valid");
-      this.utilService.authenticateUser(this.loginForm.value.username, this.loginForm.value.password)
+      this.utils.authenticateUser(this.loginForm.value.username, this.loginForm.value.password)
         .then((user) => {
           // user.sendEmailVerification();
-          this.presentToast('Login success! Please check your email for verification','top', 'success');
+          this.utils.presentToast('Login success! Please check your email for verification','top', 'success');
           this.router.navigate(['/account']);
         })
         .catch((error) => {
           console.log("Error creating user: " + error);
-          this.presentToast('Login error','top');
+          this.utils.presentToast('Login error','top');
         });
     } else {
-      this.presentToast('Form is invalid','top');
+      this.utils.presentToast('Form is invalid','top');
     }
   }
 
-  async presentToast(message: string, position: 'top' | 'middle' | 'bottom', type: 'success' | 'danger' = 'danger') {
-    const toast = await this.toastController.create({
-      message,
-      duration: 1500,
-      position: position,
-      color: type
-    });
-
-    await toast.present();
-  }
+  
 
   openMenu(){
     this.menuController.open('main-menu')

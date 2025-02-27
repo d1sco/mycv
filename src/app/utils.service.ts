@@ -68,7 +68,7 @@ export class UtilsService {
     });
   }
 
-  async presentToast(message: string, position: 'top' | 'middle' | 'bottom', type: 'success' | 'danger' = 'danger') {
+  async presentToast(message: string, position: 'top' | 'middle' | 'bottom', type: 'success' | 'danger' = 'danger'): Promise<void> {
     const toast = await this.toastController.create({
       message,
       duration: 1500,
