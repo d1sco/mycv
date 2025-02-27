@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class UtilsService {
 
   constructor(
     private http
-    : HttpClient
+    : HttpClient,
+    private toastController: ToastController
   ) { }
 
   githubRepos(): Observable<any> {
@@ -23,6 +25,11 @@ export class UtilsService {
   createUser(email: string, password: string): Promise<any> {
     const auth = getAuth();
     return createUserWithEmailAndPassword(auth, email, password);
+  }
+
+  authenticateUser(email: string, password: string): Promise<any> {
+    const auth = getAuth();
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
   userAuth() {
@@ -50,4 +57,25 @@ export class UtilsService {
     });
   }
 
+  logout() {
+    const auth = getAuth();
+    auth.signOut().then(() => {
+      // Sign-out successful.
+      this.isUserLoggedIn.next(false);
+      this.userDetails.next(null);
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+
+  async presentToast(message: string, position: 'top' | 'middle' | 'bottom', type: 'success' | 'danger' = 'danger') {
+    const toast = await this.toastController.create({
+      message,
+      duration: 1500,
+      position: position,
+      color: type
+    });
+
+    await toast.present();
+  }
 }

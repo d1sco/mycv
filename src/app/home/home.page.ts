@@ -28,7 +28,6 @@ export class HomePage {
   }
 
   openMenu(){
-    console.log("Menu opened");
     this.menuController.open('main-menu')
   }
 

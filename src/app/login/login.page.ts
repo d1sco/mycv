@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MenuController, ToastController } from '@ionic/angular';
 import { UtilsService } from '../utils.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,37 +23,34 @@ export class LoginPage implements OnInit {
   constructor(
     private utilService: UtilsService,
     private toastController: ToastController,
-    private menuController: MenuController
+    private menuController: MenuController,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
-    console.log("Submit button clicked");
-    console.log("Username: " + this.loginForm.value.username);
-    console.log("Password: " + this.loginForm.value.password);
     if(this.loginForm.valid){
       console.log("Form is valid");
-      this.utilService.createUser(this.loginForm.value.username, this.loginForm.value.password)
+      this.utilService.authenticateUser(this.loginForm.value.username, this.loginForm.value.password)
         .then((user) => {
-          console.log("User created: " + user);
           // user.sendEmailVerification();
-          this.presentToast('top', 'success');
+          this.presentToast('Login success! Please check your email for verification','top', 'success');
+          this.router.navigate(['/account']);
         })
         .catch((error) => {
           console.log("Error creating user: " + error);
-          this.presentToast('top');
+          this.presentToast('Login error','top');
         });
     } else {
-      console.log("Form is invalid");
-      this.presentToast('top');
+      this.presentToast('Form is invalid','top');
     }
   }
 
-  async presentToast(position: 'top' | 'middle' | 'bottom', type: 'success' | 'danger' = 'danger') {
+  async presentToast(message: string, position: 'top' | 'middle' | 'bottom', type: 'success' | 'danger' = 'danger') {
     const toast = await this.toastController.create({
-      message: 'Login form invalid',
+      message,
       duration: 1500,
       position: position,
       color: type
@@ -62,7 +60,6 @@ export class LoginPage implements OnInit {
   }
 
   openMenu(){
-    console.log("Menu opened");
     this.menuController.open('main-menu')
   }
 

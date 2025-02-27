@@ -20,4 +20,8 @@ export class AppComponent {
     }
     )
   }
+
+  logout(){
+    this.utils.logout();
+  }
 }

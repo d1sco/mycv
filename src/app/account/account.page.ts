@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { UtilsService } from '../utils.service';
+import { Form, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-account',
@@ -11,6 +12,11 @@ import { UtilsService } from '../utils.service';
 export class AccountPage implements OnInit {
 
   user: any
+
+  userForm: FormGroup = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl('')
+  });
 
   constructor(
     private menuController: MenuController,

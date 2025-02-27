@@ -12,8 +12,18 @@
       <ion-col size="12" size-xl="3" size-lg="4" size-md="6" size-sm="8" size-xs="12">
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Account details.</ion-card-title>
+            <ion-card-title>Account details</ion-card-title>
           </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>Email: {{user?.email}} </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Email Verified: {{user?.emailVerified}} </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
