@@ -11,7 +11,8 @@ export class UtilsService {
 
   isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   userDetails: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
+  authCardTitle: string = 'This signup is to showcase skills like responsive design and state management.';
+  authCardSubtitle: string = 'Google Cloud charges more than I can afford to pay to demo Multi-factor Authentication and SAML.';
   constructor(
     private http
     : HttpClient,

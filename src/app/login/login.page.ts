@@ -17,12 +17,18 @@ export class LoginPage implements OnInit {
     password: new FormControl('', Validators.required)
   });
 
+  authTitle: string = '';
+  authSubtitle: string ='';
+
   constructor(
     private utils: UtilsService,
     private toastController: ToastController,
     private menuController: MenuController,
     private router: Router
-  ) { }
+  ) { 
+    this.authTitle = this.utils.authCardTitle;
+    this.authSubtitle = this.utils.authCardSubtitle;
+  }
 
   ngOnInit() {
   }

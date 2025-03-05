@@ -18,11 +18,16 @@ export class RegisterPage implements OnInit {
     });
   
 
+    authTitle: string = '';
+    authSubtitle: string =''; 
   constructor(
     private menuController: MenuController,
     private router: Router,
     private utils: UtilsService
-  ) { }
+  ) { 
+    this.authTitle = this.utils.authCardTitle;
+    this.authSubtitle = this.utils.authCardSubtitle;
+  }
 
   ngOnInit() {
   }
